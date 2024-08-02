@@ -5,20 +5,34 @@ import './App.css'
 const dataDragonUrl = 'https://ddragon.leagueoflegends.com/cdn/14.15.1/data/en_US/champion.json';
 const INIT_NUM = 5;
 
-async function getChampionsData() {
-  try {
-    const response = await fetch(dataDragonUrl, {mode: 'cors'});
-    const championsData = (await response.json()).data;
-    const array = [];
+function GetChampionsData(url) {
+    const [data, setData] = useState(null);
 
-    for (let key in championsData) {
-      array.push(championsData[key]);
-    }
+    useEffect(() => {
+      let ignore = false;
 
-    return array;
-  } catch(err) {
-    console.error(err);
-  }
+      (async () => {
+        const response = await fetch(url, {mode: 'cors'});
+        const json = await response.json();
+        const champions = json.data;
+        
+        if (!ignore) {
+          const array = []
+
+          for (let key in champions) {
+            array.push(champions[key]);
+          }
+
+          setData(array);
+        }
+      })();
+
+      return () => {
+        ignore = true;
+      }
+    }, [url]);
+
+    return data;
 }
 
 async function generateRandomChampions(number) {
@@ -38,15 +52,9 @@ async function generateRandomChampions(number) {
 }
 
 function App() {
-  const [champions, setChampions] = useState();
+  // const [champions, setChampions] = useState();
 
-  useEffect(() => {
-    async function updateChampions() {
-      setChampions(await generateRandomChampions(INIT_NUM));
-    }
-
-    updateChampions();
-  }, []);
+  const champions = GetChampionsData(dataDragonUrl);
 
   return (
     <>

@@ -3,6 +3,7 @@ import 'normalize.css'
 import './App.css'
 
 const dataDragonUrl = 'https://ddragon.leagueoflegends.com/cdn/14.15.1/data/en_US/champion.json';
+const INIT_NUM = 5;
 
 async function getChampionsData() {
   try {
@@ -22,14 +23,30 @@ async function getChampionsData() {
 
 async function generateRandomChampions(number) {
   const championsData = await getChampionsData();
-  return championsData.slice(0, number);
+  const championList = [];
+  let count = 0;
+
+  while (count < number) {
+    const randomInt = Math.floor(Math.random() * championsData.length);
+    if (!championList.includes(championsData[randomInt])) {
+      championList.push(championsData[randomInt]);
+      count++;
+    }
+  }
+
+  return championList;
 }
 
 function App() {
   const [champions, setChampions] = useState();
 
-  // initialize app
-  (async () => setChampions(await generateRandomChampions(5)))();
+  useEffect(() => {
+    async function updateChampions() {
+      setChampions(await generateRandomChampions(INIT_NUM));
+    }
+
+    updateChampions();
+  }, []);
 
   return (
     <>
@@ -39,13 +56,13 @@ function App() {
           <h2>Champions:</h2>
           <ul>
             {
-              champions.map(champ => {
+              champions ? champions.map(champ => {
                 return (
                   <li key={champ.id}>
                     {champ.name}
                   </li>
                 )
-              })
+              }) : 'Loading...'
             }
           </ul>
         </div>

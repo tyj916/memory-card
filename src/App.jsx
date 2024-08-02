@@ -35,22 +35,6 @@ function GetChampionsData(url) {
     return data;
 }
 
-async function generateRandomChampions(number) {
-  const championsData = await getChampionsData();
-  const championList = [];
-  let count = 0;
-
-  while (count < number) {
-    const randomInt = Math.floor(Math.random() * championsData.length);
-    if (!championList.includes(championsData[randomInt])) {
-      championList.push(championsData[randomInt]);
-      count++;
-    }
-  }
-
-  return championList;
-}
-
 function App() {
   // const [champions, setChampions] = useState();
 

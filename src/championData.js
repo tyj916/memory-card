@@ -14,12 +14,14 @@ async function fetchChampionData() {
   const json = await response.json();
   const data = json.data;
 
+  console.log(data);
+
   const array = [];
 
   for (let key in data) {
     const id = data[key].id;
     const name = data[key].name;
-    const imageUrl = getChampionImageUrl(name);
+    const imageUrl = getChampionImageUrl(id);
     array.push({id, name, imageUrl});
   }
 

@@ -15,9 +15,10 @@ async function fetchChampionData() {
   const array = [];
 
   for (let key in data) {
+    const id = data[key].id;
     const name = data[key].name;
     const imageUrl = getChampionImageUrl(name);
-    array.push({name, imageUrl});
+    array.push({id, name, imageUrl});
   }
 
   return array;
@@ -36,8 +37,6 @@ async function getRandomChampion(num) {
     }
   }
 
-  console.log(randomChamps);
-
   return randomChamps;
 }
 
@@ -49,40 +48,22 @@ function getChampionImageUrl(name) {
   return imageUrl;
 }
 
-function GetChampionsData(url) {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-      let ignore = false;
-
-      (async () => {
-        const response = await fetch(url, {mode: 'cors'});
-        const json = await response.json();
-        const champions = json.data;
-        
-        if (!ignore) {
-          const array = []
-
-          for (let key in champions) {
-            array.push(champions[key]);
-          }
-
-          setData(array);
-        }
-      })();
-
-      return () => {
-        ignore = true;
-      }
-    }, [url]);
-
-    return data;
-}
-
 function App() {
-  // const [champions, setChampions] = useState();
+  const [champions, setChampions] = useState([]);
 
-  const randomChamps = getRandomChampion(INIT_NUM);
+  useEffect(() => {
+    let ignore = false;
+    (async () => {
+      const randomChamps = await getRandomChampion(INIT_NUM);
+      if (!ignore) {
+        setChampions(randomChamps);
+      }
+    })();
+
+    return () => {
+      ignore = true;
+    }
+  }, []);
 
   return (
     <>
@@ -91,17 +72,17 @@ function App() {
         <div>
           <h2>Champions:</h2>
           <ul>
-            {/* {
-              randomChamps ? randomChamps.map(champ => {
+            {
+              champions ? champions.map(champ => {
                 return (
                   <Card 
                     key={champ.id}
                     name={champ.name}
-                    imageUrl={getChampionImageUrl(champ.name)}
+                    imageUrl={champ.imageUrl}
                   />
                 )
               }) : 'Loading...'
-            } */}
+            }
           </ul>
         </div>
       </div>

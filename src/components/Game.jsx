@@ -20,6 +20,10 @@ export default function Game() {
     }
   }, []);
 
+  function shuffleCard() {
+    console.log('Shuffling...');
+  }
+
   return (
     <div className="game-container">
       {
@@ -29,6 +33,7 @@ export default function Game() {
               key={champ.id}
               name={champ.name}
               imageUrl={champ.imageUrl}
+              shuffleCard={shuffleCard}
             />
           )
         }) : 'Loading...'

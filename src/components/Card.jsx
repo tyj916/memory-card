@@ -5,15 +5,18 @@ function gameover() {
 }
 
 // eslint-disable-next-line react/prop-types
-export default function Card({name, imageUrl}) {
+export default function Card({name, imageUrl, shuffleCard}) {
   const [isClicked, setIsClicked] = useState(false);
 
   function clickHandler(e) {
     if (isClicked) {
       gameover();
+      return;
     }
 
     setIsClicked(true);
+
+    shuffleCard();
   }
 
   return (

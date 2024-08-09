@@ -8,7 +8,7 @@ function gameover() {
 export default function Card({name, imageUrl, shuffleCards, addScore}) {
   const [isClicked, setIsClicked] = useState(false);
 
-  function clickHandler(e) {
+  function clickHandler() {
     if (isClicked) {
       gameover();
       return;

@@ -10,10 +10,6 @@ function App() {
     setCurrentScore(currentScore + 1);
   }
 
-  function getCurrentScore() {
-    return currentScore;
-  }
-
   return (
     <>
       <div>
@@ -26,7 +22,7 @@ function App() {
           <h2>Champions:</h2>
           <Game 
             addScore={addScore}
-            getCurrentScore={getCurrentScore}
+            currentScore={currentScore}
           />
         </div>
       </div>

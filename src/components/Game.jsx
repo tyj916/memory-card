@@ -3,7 +3,7 @@ import { fetchChampionData } from "../championData";
 import Card from "./Card";
 
 // eslint-disable-next-line react/prop-types
-export default function Game({addScore, getCurrentScore}) {
+export default function Game({addScore, currentScore}) {
   const [championData, setChampionData] = useState(null);
   const [champions, setChampions] = useState(null);
   const INIT_NUM = 5;
@@ -90,7 +90,7 @@ export default function Game({addScore, getCurrentScore}) {
               imageUrl={champ.imageUrl}
               shuffleCards={shuffleCards}
               addScore={addScore}
-              getCurrentScore={getCurrentScore}
+              currentScore={currentScore}
               addCards={addCards}
             />
           )

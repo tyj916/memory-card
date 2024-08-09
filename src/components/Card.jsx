@@ -10,7 +10,7 @@ export default function Card({
     imageUrl, 
     shuffleCards, 
     addScore, 
-    getCurrentScore,
+    currentScore,
     addCards
   }) {
   const [isClicked, setIsClicked] = useState(false);
@@ -25,10 +25,10 @@ export default function Card({
 
     shuffleCards();
     addScore();
-    
-    const currentScore = getCurrentScore() + 1;
-    console.log(currentScore);
-    addCards();
+
+    if ((currentScore + 1) % 5 === 0) {
+      addCards();
+    }
   }
 
   return (

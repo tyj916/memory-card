@@ -5,7 +5,7 @@ function gameover() {
 }
 
 // eslint-disable-next-line react/prop-types
-export default function Card({name, imageUrl, shuffleCard}) {
+export default function Card({name, imageUrl, shuffleCards, addScore}) {
   const [isClicked, setIsClicked] = useState(false);
 
   function clickHandler(e) {
@@ -16,7 +16,8 @@ export default function Card({name, imageUrl, shuffleCard}) {
 
     setIsClicked(true);
 
-    shuffleCard();
+    shuffleCards();
+    addScore();
   }
 
   return (

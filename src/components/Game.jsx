@@ -20,8 +20,18 @@ export default function Game() {
     }
   }, []);
 
-  function shuffleCard() {
-    console.log('Shuffling...');
+  function shuffleCards() {
+    const current = champions;
+    const shuffled = current
+      .map(value => ({value, key: Math.random()}))
+      .sort((a, b) => a.key - b.key)
+      .map(({value}) => value);
+      
+    setChampions(shuffled);
+  }
+
+  function addScore(){
+    console.log('Add score');
   }
 
   return (
@@ -33,7 +43,8 @@ export default function Game() {
               key={champ.id}
               name={champ.name}
               imageUrl={champ.imageUrl}
-              shuffleCard={shuffleCard}
+              shuffleCards={shuffleCards}
+              addScore={addScore}
             />
           )
         }) : 'Loading...'

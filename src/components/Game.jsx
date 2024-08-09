@@ -29,8 +29,6 @@ export default function Game({addScore, getCurrentScore}) {
 
         setChampionData(data);
         setChampions(randomChamps);
-
-        console.log('effect')
       }
     })();
 
@@ -69,14 +67,15 @@ export default function Game({addScore, getCurrentScore}) {
     }
 
     setChampionData(data);
-
-    console.log('random')
   
     return randomChamps;
   }
 
   function addCards() {
-    const randomChamps = getRandomChampion(5);
+    const number = championData.length - champions.length < 5
+      ? (championData.length - champions.length)
+      : 5;
+    const randomChamps = getRandomChampion(number);
     setChampions(champions.concat(randomChamps));
   }
 

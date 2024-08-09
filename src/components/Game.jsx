@@ -13,20 +13,24 @@ export default function Game({addScore, getCurrentScore}) {
     (async () => {
       if (!ignore) {
         const data = await fetchChampionData();
-        setChampionData(data);
+        data.map(value => ({...value, isShown: false})) ;
 
         const randomChamps = [];
         let count = 0;
 
         while (count < INIT_NUM) {
           const randomInt = Math.floor(Math.random() * data.length);
-          if (!randomChamps.includes(data[randomInt])) {
+          if (!data[randomInt].isShown) {
             randomChamps.push(data[randomInt]);
+            data[randomInt].isShown = true;
             count++;
           }
         }
 
+        setChampionData(data);
         setChampions(randomChamps);
+
+        console.log('effect')
       }
     })();
 
@@ -50,15 +54,39 @@ export default function Game({addScore, getCurrentScore}) {
     setChampions(shuffled);
   }
 
+  function getRandomChampion(num) {
+    const data = championData;
+    const randomChamps = [];
+    let count = 0;
+  
+    while (count < num) {
+      const randomInt = Math.floor(Math.random() * championData.length);
+      if (!data[randomInt].isShown) {
+        randomChamps.push(data[randomInt]);
+        data[randomInt].isShown = true;
+        count++;
+      }
+    }
+
+    setChampionData(data);
+
+    console.log('random')
+  
+    return randomChamps;
+  }
+
   function addCards() {
-    (async () => {
-      const randomChamps = await getRandomChampion(5);
-      setChampions(champions.concat(randomChamps));
-    })();
+    const randomChamps = getRandomChampion(5);
+    setChampions(champions.concat(randomChamps));
+  }
+
+  function clickHandler() {
+    console.log(getRandomChampion(5));
   }
 
   return (
     <div className="game-container">
+      <button onClick={clickHandler}>button</button>
       {
         champions ? champions.map(champ => {
           return (

@@ -79,13 +79,8 @@ export default function Game({addScore, getCurrentScore}) {
     setChampions(champions.concat(randomChamps));
   }
 
-  function clickHandler() {
-    console.log(getRandomChampion(5));
-  }
-
   return (
     <div className="game-container">
-      <button onClick={clickHandler}>button</button>
       {
         champions ? champions.map(champ => {
           return (

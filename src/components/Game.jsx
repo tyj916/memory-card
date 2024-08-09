@@ -37,17 +37,20 @@ export default function Game({addScore, currentScore}) {
     }
   }, []);
 
-  function shuffleCards() {
-    const current = champions;
-
+  function shuffleArray(array) {
     // given each array item a random value key 
     // by setting them as an object
     // then sort according to the random value key
     // finally return the value
-    const shuffled = current
+    return (array
       .map(value => ({value, key: Math.random()}))
       .sort((a, b) => a.key - b.key)
-      .map(({value}) => value);
+      .map(({value}) => value));
+  }
+
+  // Decouple function to avoid useState setChampions collision
+  function shuffleCards() {
+    const shuffled = shuffleArray(champions);
       
     setChampions(shuffled);
   }
@@ -76,7 +79,9 @@ export default function Game({addScore, currentScore}) {
       ? (championData.length - champions.length)
       : 5;
     const randomChamps = getRandomChampion(number);
-    setChampions(champions.concat(randomChamps));
+    const concatenatedChampions = champions.concat(randomChamps);
+    const shuffledChampions = shuffleArray(concatenatedChampions);
+    setChampions(shuffledChampions);
   }
 
   return (

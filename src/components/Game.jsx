@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import getRandomChampion from "../championData";
 import Card from "./Card";
 
-export default function Game() {
+// eslint-disable-next-line react/prop-types
+export default function Game({addScore}) {
   const [champions, setChampions] = useState([]);
   const INIT_NUM = 5;
 
@@ -33,10 +34,6 @@ export default function Game() {
       .map(({value}) => value);
       
     setChampions(shuffled);
-  }
-
-  function addScore(){
-    console.log('Add score');
   }
 
   return (

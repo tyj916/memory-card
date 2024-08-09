@@ -1,11 +1,18 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 function gameover() {
   console.log('Game over');
 }
 
-// eslint-disable-next-line react/prop-types
-export default function Card({name, imageUrl, shuffleCards, addScore}) {
+export default function Card({
+    name, 
+    imageUrl, 
+    shuffleCards, 
+    addScore, 
+    getCurrentScore,
+    addCards
+  }) {
   const [isClicked, setIsClicked] = useState(false);
 
   function clickHandler() {
@@ -18,6 +25,10 @@ export default function Card({name, imageUrl, shuffleCards, addScore}) {
 
     shuffleCards();
     addScore();
+    
+    const currentScore = getCurrentScore() + 1;
+    console.log(currentScore);
+    addCards();
   }
 
   return (

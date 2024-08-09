@@ -3,7 +3,7 @@ import getRandomChampion from "../championData";
 import Card from "./Card";
 
 // eslint-disable-next-line react/prop-types
-export default function Game({addScore}) {
+export default function Game({addScore, getCurrentScore}) {
   const [champions, setChampions] = useState([]);
   const INIT_NUM = 5;
 
@@ -36,6 +36,13 @@ export default function Game({addScore}) {
     setChampions(shuffled);
   }
 
+  function addCards() {
+    (async () => {
+      const randomChamps = await getRandomChampion(5);
+      setChampions(champions.concat(randomChamps));
+    })();
+  }
+
   return (
     <div className="game-container">
       {
@@ -47,6 +54,8 @@ export default function Game({addScore}) {
               imageUrl={champ.imageUrl}
               shuffleCards={shuffleCards}
               addScore={addScore}
+              getCurrentScore={getCurrentScore}
+              addCards={addCards}
             />
           )
         }) : 'Loading...'

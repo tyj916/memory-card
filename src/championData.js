@@ -12,8 +12,6 @@ async function fetchChampionData() {
   const json = await response.json();
   const data = json.data;
 
-  console.log(data);
-
   const array = [];
 
   for (let key in data) {

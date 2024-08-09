@@ -4,10 +4,14 @@ import './App.css'
 import Game from './components/Game';
 
 function App() {
-  const [score, setScore] = useState(0);
+  const [currentScore, setCurrentScore] = useState(0);
 
   function addScore() {
-    setScore(score + 1);
+    setCurrentScore(currentScore + 1);
+  }
+
+  function getCurrentScore() {
+    return currentScore;
   }
 
   return (
@@ -16,12 +20,13 @@ function App() {
         <h1>Title</h1>
         <div>
           <h2>Scoreboard</h2>
-          <p>Current Score: {score}</p>
+          <p>Current Score: {currentScore}</p>
         </div>
         <div>
           <h2>Champions:</h2>
           <Game 
             addScore={addScore}
+            getCurrentScore={getCurrentScore}
           />
         </div>
       </div>

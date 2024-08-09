@@ -22,6 +22,11 @@ export default function Game() {
 
   function shuffleCards() {
     const current = champions;
+
+    // given each array item a random value key 
+    // by setting them as an object
+    // then sort according to the random value key
+    // finally return the value
     const shuffled = current
       .map(value => ({value, key: Math.random()}))
       .sort((a, b) => a.key - b.key)

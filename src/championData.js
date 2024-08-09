@@ -24,20 +24,4 @@ async function fetchChampionData() {
   return array;
 }
 
-async function getRandomChampion(num) {
-  const championData = await fetchChampionData();
-  const randomChamps = [];
-  let count = 0;
-
-  while (count < num) {
-    const randomInt = Math.floor(Math.random() * championData.length);
-    if (!randomChamps.includes(championData[randomInt])) {
-      randomChamps.push(championData[randomInt]);
-      count++;
-    }
-  }
-
-  return randomChamps;
-}
-
-export default getRandomChampion;
+export { fetchChampionData };

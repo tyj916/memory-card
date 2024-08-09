@@ -1,17 +1,31 @@
 import { useState, useEffect } from "react";
-import getRandomChampion from "../championData";
+import { fetchChampionData } from "../championData";
 import Card from "./Card";
 
 // eslint-disable-next-line react/prop-types
 export default function Game({addScore, getCurrentScore}) {
-  const [champions, setChampions] = useState([]);
+  const [championData, setChampionData] = useState(null);
+  const [champions, setChampions] = useState(null);
   const INIT_NUM = 5;
 
   useEffect(() => {
     let ignore = false;
     (async () => {
-      const randomChamps = await getRandomChampion(INIT_NUM);
       if (!ignore) {
+        const data = await fetchChampionData();
+        setChampionData(data);
+
+        const randomChamps = [];
+        let count = 0;
+
+        while (count < INIT_NUM) {
+          const randomInt = Math.floor(Math.random() * data.length);
+          if (!randomChamps.includes(data[randomInt])) {
+            randomChamps.push(data[randomInt]);
+            count++;
+          }
+        }
+
         setChampions(randomChamps);
       }
     })();

@@ -13,6 +13,8 @@ header {
   display: flex;
   padding: 0 16px;
   align-items: center;
+  max-width: 1200px;
+  margin: auto;
 }
 
 header .intro {
@@ -24,7 +26,7 @@ header .scoreboard * {
 }
 
 .game-container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 24px auto;
   padding: 8px;
 }

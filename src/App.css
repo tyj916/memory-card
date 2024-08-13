@@ -1,0 +1,8 @@
+@font-face {
+  font-family: Beaufort;
+  src: url(./assets/BeaufortForLoL-OTF/font/Beaufort/BeaufortforLOL-Regular.otf);
+}
+
+body {
+  font-family: Beaufort, Georgia, 'Times New Roman', Times, serif;
+}

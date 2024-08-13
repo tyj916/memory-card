@@ -9,7 +9,6 @@
 
 .card:hover {
   cursor: pointer;
-  /* box-shadow: 0px 0px 8px 0px #005a82; */
   border-image: linear-gradient(to right, #785a28, #c89b3c) 1;
 }
 

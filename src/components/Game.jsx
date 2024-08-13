@@ -12,7 +12,7 @@ export default function Game({
 }) {
   const [championData, setChampionData] = useState(null);
   const [champions, setChampions] = useState(null);
-  const INIT_NUM = 5;
+  const INIT_NUM = 10;
 
   useEffect(() => {
     let ignore = false;

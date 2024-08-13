@@ -1,17 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-function gameover() {
-  console.log('Game over');
-}
-
 export default function Card({
     name, 
     imageUrl, 
     shuffleCards, 
     addScore, 
     currentScore,
-    addCards
+    addCards,
+    gameover
   }) {
   const [isClicked, setIsClicked] = useState(false);
 

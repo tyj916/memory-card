@@ -15,6 +15,10 @@ function App() {
     }
   }
 
+  function resetCurrentScore() {
+    setCurrentScore(0);
+  }
+
   return (
     <>
       <div>
@@ -29,6 +33,7 @@ function App() {
           <Game 
             addScore={addScore}
             currentScore={currentScore}
+            resetCurrentScore={resetCurrentScore}
           />
         </div>
       </div>

@@ -1,9 +1,13 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { fetchChampionData } from "../championData";
 import Card from "./Card";
 
-// eslint-disable-next-line react/prop-types
-export default function Game({addScore, currentScore}) {
+export default function Game({
+  addScore, 
+  currentScore,
+  resetCurrentScore
+}) {
   const [championData, setChampionData] = useState(null);
   const [champions, setChampions] = useState(null);
   const INIT_NUM = 5;
@@ -55,8 +59,8 @@ export default function Game({addScore, currentScore}) {
     setChampions(shuffled);
   }
 
-  function getRandomChampion(num) {
-    const data = championData;
+  function getRandomChampion(num, newChampionData) {
+    const data = newChampionData || championData;
     const randomChamps = [];
     let count = 0;
   
@@ -84,6 +88,20 @@ export default function Game({addScore, currentScore}) {
     setChampions(shuffledChampions);
   }
 
+  function gameover() {
+    resetCurrentScore();
+
+    const resetData = championData;
+    resetData.forEach(element => {
+      element.isShown = false;
+    });
+
+    setChampionData(resetData);
+
+    const newRandomChampions = getRandomChampion(INIT_NUM, resetData);
+    setChampions(newRandomChampions);
+  }
+
   return (
     <div className="game-container">
       {
@@ -97,6 +115,7 @@ export default function Game({addScore, currentScore}) {
               addScore={addScore}
               currentScore={currentScore}
               addCards={addCards}
+              gameover={gameover}
             />
           )
         }) : 'Loading...'

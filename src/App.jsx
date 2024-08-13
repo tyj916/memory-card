@@ -23,17 +23,18 @@ function App() {
     <>
       <div>
         <h1>Title</h1>
-        <div>
+        <div className='scoreboard'>
           <h2>Scoreboard</h2>
           <p>Best Score: {bestScore}</p>
           <p>Current Score: {currentScore}</p>
         </div>
-        <div>
+        <div className='game'>
           <h2>Champions:</h2>
           <Game 
             addScore={addScore}
             currentScore={currentScore}
             resetCurrentScore={resetCurrentScore}
+            bestScore={bestScore}
           />
         </div>
       </div>

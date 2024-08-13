@@ -8,13 +8,13 @@ export default function Card({
     addScore, 
     currentScore,
     addCards,
-    gameover
+    showGameoverDialog
   }) {
   const [isClicked, setIsClicked] = useState(false);
 
   function clickHandler() {
     if (isClicked) {
-      gameover();
+      showGameoverDialog();
       return;
     }
 

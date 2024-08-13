@@ -6,7 +6,8 @@ import Card from "./Card";
 export default function Game({
   addScore, 
   currentScore,
-  resetCurrentScore
+  resetCurrentScore,
+  bestScore
 }) {
   const [championData, setChampionData] = useState(null);
   const [champions, setChampions] = useState(null);
@@ -88,7 +89,7 @@ export default function Game({
     setChampions(shuffledChampions);
   }
 
-  function gameover() {
+  function resetGame() {
     resetCurrentScore();
 
     const resetData = championData;
@@ -102,24 +103,43 @@ export default function Game({
     setChampions(newRandomChampions);
   }
 
+  const dialog = document.querySelector('dialog');
+
+  function showGameoverDialog() {
+    dialog.showModal();
+  }
+
+  function closeDialog() {
+    dialog.close();
+    resetGame();
+  }
+
   return (
-    <div className="game-container">
-      {
-        champions ? champions.map(champ => {
-          return (
-            <Card 
-              key={champ.id}
-              name={champ.name}
-              imageUrl={champ.imageUrl}
-              shuffleCards={shuffleCards}
-              addScore={addScore}
-              currentScore={currentScore}
-              addCards={addCards}
-              gameover={gameover}
-            />
-          )
-        }) : 'Loading...'
-      }
-    </div>
+    <>
+      <div className="game-container">
+        {
+          champions ? champions.map(champ => {
+            return (
+              <Card 
+                key={champ.id}
+                name={champ.name}
+                imageUrl={champ.imageUrl}
+                shuffleCards={shuffleCards}
+                addScore={addScore}
+                currentScore={currentScore}
+                addCards={addCards}
+                showGameoverDialog={showGameoverDialog}
+              />
+            )
+          }) : 'Loading...'
+        }
+      </div>
+      <dialog id="game-over-dialog">
+        <h2>Game Over!</h2>
+        <p>Score: {currentScore}</p>
+        <p>Personal best: {bestScore}</p>
+        <button type='button' onClick={closeDialog}>Close</button>
+      </dialog>
+    </>
   );
 }

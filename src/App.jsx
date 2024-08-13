@@ -5,9 +5,14 @@ import Game from './components/Game';
 
 function App() {
   const [currentScore, setCurrentScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
   function addScore() {
     setCurrentScore(currentScore + 1);
+
+    if (currentScore + 1 >= bestScore ) {
+      setBestScore(currentScore + 1);
+    }
   }
 
   return (
@@ -16,6 +21,7 @@ function App() {
         <h1>Title</h1>
         <div>
           <h2>Scoreboard</h2>
+          <p>Best Score: {bestScore}</p>
           <p>Current Score: {currentScore}</p>
         </div>
         <div>

@@ -1,0 +1,27 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+dialog {
+  background-color: #0a1428;
+  color: #f0e6d2;
+  padding: 36px;
+  border-color: #c89b3c;
+}
+
+dialog::backdrop {
+  background-color: #0a1428;
+  opacity: 0.6;
+}
+
+dialog button {
+  background-color: #c89b3c;
+  color: #32281e;
+  border: none;
+}
+
+dialog button:hover {
+  box-shadow: 0 0 4px 1px #c89b3c;
+}

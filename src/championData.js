@@ -1,6 +1,6 @@
 function getChampionImageUrl(name) {
-  const urlPrefix = 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/'
-  const urlSuffix = '_0.jpg'
+  const urlPrefix = 'https://ddragon.leagueoflegends.com/cdn/14.15.1/img/champion/'
+  const urlSuffix = '.png'
   const imageUrl = urlPrefix + name + urlSuffix;
 
   return imageUrl;

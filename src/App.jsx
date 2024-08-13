@@ -22,14 +22,19 @@ function App() {
   return (
     <>
       <div>
-        <h1>Title</h1>
-        <div className='scoreboard'>
-          <h2>Scoreboard</h2>
-          <p>Best Score: {bestScore}</p>
-          <p>Current Score: {currentScore}</p>
-        </div>
-        <div className='game'>
-          <h2>Champions:</h2>
+        <header>
+          <div className='intro'>
+            <h1>Project: Memory Card Game</h1>
+            <p className="description">Get points by clicking a card that isn&apos;t selected before. Try getting as high score as possible.</p>
+          </div>
+          <div className='scoreboard'>
+            <h2>Scoreboard</h2>
+            <p>Current Score: {currentScore}</p>
+            <p>Best Score: {bestScore}</p>
+          </div>
+        </header>
+        
+        <div className='game-container'>
           <Game 
             addScore={addScore}
             currentScore={currentScore}

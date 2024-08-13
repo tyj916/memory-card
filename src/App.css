@@ -5,4 +5,26 @@
 
 body {
   font-family: Beaufort, Georgia, 'Times New Roman', Times, serif;
+  background-image: linear-gradient(#091428, #0a1428);
+  color: #f0e6d2;
+}
+
+header {
+  display: flex;
+  padding: 0 16px;
+  align-items: center;
+}
+
+header .intro {
+  flex: 1;
+}
+
+header .scoreboard * {
+  margin: 0;
+}
+
+.game-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 8px;
 }

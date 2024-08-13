@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { fetchChampionData } from "../championData";
 import Card from "./Card";
+import './Game.css';
 
 export default function Game({
   addScore, 
@@ -116,7 +117,7 @@ export default function Game({
 
   return (
     <>
-      <div className="game-container">
+      <div className="cards-container">
         {
           champions ? champions.map(champ => {
             return (

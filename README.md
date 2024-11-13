@@ -5,3 +5,6 @@ For each unique card selected, the player will earn 1 score.
 
 Live site:
 https://tyj916memorycard.netlify.app/
+
+Bug to fix:
+- Some clicked card is still being remembered after the game has been restarted
